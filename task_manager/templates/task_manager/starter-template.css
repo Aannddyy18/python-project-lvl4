@@ -5,3 +5,10 @@ body {
   padding: 3rem 1.5rem;
   text-align: center;
 }
+.py-5 {
+  padding-left: ($spacer * 3) !important;
+  padding-right: ($spacer * 3) !important;
+}
+.mt-5 {
+  margin-top: 3 !important;
+}

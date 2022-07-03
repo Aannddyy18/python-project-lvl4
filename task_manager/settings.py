@@ -11,11 +11,18 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
+import sys
 from pathlib import Path
 from dotenv import load_dotenv
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Include BOOTSTRAP4_FOLDER in path
+BOOTSTRAP4_FOLDER = os.path.abspath(os.path.join(BASE_DIR, "..", "bootstrap4"))
+if BOOTSTRAP4_FOLDER not in sys.path:
+    sys.path.insert(0, BOOTSTRAP4_FOLDER)
 
 
 # Quick-start development settings - unsuitable for production
@@ -59,13 +66,20 @@ ROOT_URLCONF = 'task_manager.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'task_manager/templates/task_manager'],
+        'DIRS': [
+            BASE_DIR / 'task_manager/templates/task_manager',
+            BASE_DIR / 'task_manager/templates/assets/dist/css',
+            BASE_DIR / 'task_manager/templates/assets/dist/js'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
+                "django.template.context_processors.media",
+                "django.template.context_processors.static",
+                "django.template.context_processors.tz",
                 'django.contrib.messages.context_processors.messages',
             ],
         },
@@ -108,9 +122,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LOCALE_PATHS = ( os.path.join(BASE_DIR, 'locale'), )
+LOCALE_PATHS = (os.path.join(BASE_DIR, 'locale'),)
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
@@ -126,12 +140,32 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Additional locations of static files
+STATICFILES_DIRS = (
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(BASE_DIR, "staticfiles"),
+    "/starter-template.css"
+)
+
+# List of finder classes that know how to find static files in
+# various locations.
+STATICFILES_FINDERS = (
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Configure Django App for Heroku.
-import django_heroku
+BOOTSTRAP4 = {
+    "error_css_class": "bootstrap4-error",
+    "required_css_class": "bootstrap4-required",
+},
 
+# Configure Django App for Heroku.
 django_heroku.settings(locals())
