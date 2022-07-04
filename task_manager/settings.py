@@ -67,9 +67,9 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'task_manager/templates/task_manager',
-            BASE_DIR / 'task_manager/templates/assets/dist/css',
-            BASE_DIR / 'task_manager/templates/assets/dist/js'
+            (BASE_DIR / 'task_manager/templates/task_manager'),
+            (BASE_DIR / 'task_manager/templates/assets/dist/css'),
+            (BASE_DIR / 'task_manager/templates/assets/dist/js')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -145,8 +145,6 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(BASE_DIR, "staticfiles"),
-    "/starter-template.css"
 )
 
 # List of finder classes that know how to find static files in
