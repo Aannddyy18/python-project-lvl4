@@ -12,5 +12,6 @@ task_manager/__pycache__/
 .DS_Store
 task_manager/.DS_Store
 task_manager/templates/.DS_Store
+task_manager/templates/task_manager/.DS_Store
 *.mo
 *.po
