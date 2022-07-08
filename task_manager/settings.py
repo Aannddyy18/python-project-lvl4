@@ -47,8 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'task_manager',
     'bootstrap4',
+    'task_manager',
 ]
 
 MIDDLEWARE = [
@@ -68,8 +68,6 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             (BASE_DIR / 'task_manager/templates/task_manager'),
-            (BASE_DIR / 'task_manager/templates/assets/dist/css'),
-            (BASE_DIR / 'task_manager/templates/assets/dist/js')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -161,8 +159,16 @@ STATICFILES_FINDERS = (
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 BOOTSTRAP4 = {
-    "error_css_class": "bootstrap4-error",
-    "required_css_class": "bootstrap4-required",
+    "css_url": {
+        "href": "https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css",
+        "integrity": "sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l",
+        "crossorigin": "anonymous",
+    },
+    "javascript_url": {
+        "url": "https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js",
+        "integrity": "sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns",
+        "crossorigin": "anonymous",
+    },
 },
 
 # Configure Django App for Heroku.
