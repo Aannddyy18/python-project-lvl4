@@ -18,10 +18,9 @@
     <!-- Bootstrap CSS -->
     {% bootstrap_css %}
 
-    <!-- Bootstrap JavaScript if it is in head -->
-    {% if 'javascript_in_head'|bootstrap_setting %}
-        {% bootstrap_javascript %}
-    {% endif %}
+
+    {% bootstrap_javascript %}
+
 
     {% block bootstrap4_extra_head %}{% endblock %}
 
